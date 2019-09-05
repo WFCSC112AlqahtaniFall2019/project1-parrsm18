@@ -22,8 +22,7 @@ int main() {
 
     int numGuesses = 0;
 
-
-    while (hit == false) {
+    while (!hit) {
 
         for (int i = 0; i < battlefield.size(); i++) {
             for (int j = 0; j < battlefield.at(i).size(); j++) {
@@ -33,23 +32,28 @@ int main() {
             cout << "~~~~~~";
             cout << endl;
         }
-        cout << "Enter guess for x coordinate of ship: " << endl;
+        cout << "Enter guess for column of ship: " << endl;
         cin >> guessXCoordinate;
-        cout << "Enter guess for y coordinate of ship: " << endl;
+        guessXCoordinate -= 1;
+        cout << "Enter guess for row of ship: " << endl;
         cin >> guessYCoordinate;
+        guessYCoordinate -= 1;
 
         if (guessXCoordinate == randXCoordinate && guessYCoordinate == randYCoordinate) {
             hit = true;
-            battlefield.at(guessXCoordinate).at(guessYCoordinate) = "X";
+            battlefield.at(guessYCoordinate).at(guessXCoordinate) = "X";
             for (int i = 0; i < battlefield.size(); i++) {
                 for (int j = 0; j < battlefield.at(i).size(); j++) {
                     cout << battlefield.at(i).at(j) << " ";
                 }
+                cout << endl;
+                cout << "~~~~~~";
+                cout << endl;
             }
             cout << "Hit!!! You sunk my battleship in " << numGuesses << endl;
         }
         else {
-            battlefield.at(guessXCoordinate).at(guessYCoordinate) = "O";
+            battlefield.at(guessYCoordinate).at(guessXCoordinate) = "O";
             numGuesses++;
             cout << "Miss!!!" << endl;
         }
