@@ -16,7 +16,7 @@ int main() {
     srand(time(0));
     int randXCoordinate = rand() % 3;
     int randYCoordinate = rand() % 3;
-    cout << randXCoordinate << " " << randYCoordinate << endl;
+    //cout << randXCoordinate + 1 << " " << randYCoordinate  + 1<< endl;
 
     char guessXCoordinate;
     char guessYCoordinate;
@@ -27,7 +27,6 @@ int main() {
     int numGuesses = 0;
 
     while (!hit) {
-
         for (int i = 0; i < battlefield.size(); i++) {
             for (int j = 0; j < battlefield.at(i).size(); j++) {
                 cout << battlefield.at(i).at(j) << " ";
@@ -71,7 +70,7 @@ int main() {
                 cout << "~~~~~~";
                 cout << endl;
             }
-            cout << "Hit!!! You sunk my battleship in " << numGuesses << " guesses" << endl;
+            cout << "Hit!!! You sunk my battleship in " << numGuesses << " guesses!" << endl;
         }
         else {
             battlefield.at(yCoordinate).at(xCoordinate) = "O";
