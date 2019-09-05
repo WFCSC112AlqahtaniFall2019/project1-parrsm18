@@ -5,59 +5,74 @@
 using namespace std;
 
 int main() {
-    const int COL = 3;
-    const int ROW = 3;
+    //Specify number of rows and columns
+    const int COL = 10;
+    const int ROW = 10;
 
     bool hit = false;
 
+    //Create two-dimensional array
     vector<string> vec(COL, "!");
     vector<vector<string>> battlefield(ROW, vec);
 
+    //Seed random number and create ship location
     srand(time(0));
-    int randXCoordinate = rand() % 3;
-    int randYCoordinate = rand() % 3;
-    //cout << randXCoordinate + 1 << " " << randYCoordinate  + 1<< endl;
+    int randXCoordinate = rand() % COL;
+    int randYCoordinate = rand() % ROW;
 
-    char guessXCoordinate;
-    char guessYCoordinate;
+    //Following line is used for debugging purposes
+    cout << randXCoordinate + 1 << " " << randYCoordinate  + 1 << endl;
+
+    //Initialize all other variables to be used
+    char guessXCoordinate = 'A';
+    char guessYCoordinate = 'A';
+    char alphabet = 'A';
 
     int xCoordinate = 0;
     int yCoordinate = 0;
 
     int numGuesses = 0;
 
+    //Begin game
     while (!hit) {
+        //Print out board
         for (int i = 0; i < battlefield.size(); i++) {
             for (int j = 0; j < battlefield.at(i).size(); j++) {
                 cout << battlefield.at(i).at(j) << " ";
             }
             cout << endl;
-            cout << "~~~~~~";
+            for (int z = 0; z <= COL - 1; z++){
+                cout << "~ ";
+            }
             cout << endl;
         }
+
+        //Asks user to guess column that ship is located in
         cout << "Enter guess for column of ship: (A for column 1, B for column 2, C for column 3)" << endl;
         cin >> guessXCoordinate;
-        if (guessXCoordinate == 'A'){
-            xCoordinate = 0;
-        }
-        else if (guessXCoordinate == 'B'){
-            xCoordinate = 1;
-        }
-        else if (guessXCoordinate == 'C'){
-            xCoordinate = 2;
-        }
-        cout << "Enter guess for row of ship: (A for row 1, B for row 2, C for row 3) " << endl;
-        cin >> guessYCoordinate;
-        if (guessYCoordinate == 'A'){
-            yCoordinate = 0;
-        }
-        else if (guessYCoordinate == 'B'){
-            yCoordinate = 1;
-        }
-        else if (guessYCoordinate == 'C'){
-            yCoordinate = 2;
+
+        for (int x = 0; x < COL; x++){
+            if(guessXCoordinate == alphabet){
+                xCoordinate = x;
+                break;
+            }
+            alphabet += 1;
         }
 
+        //Asks user to guess row that ship is located in
+        cout << "Enter guess for row of ship: (A for row 1, B for row 2, C for row 3) " << endl;
+        cin >> guessYCoordinate;
+
+        alphabet = 'A';
+        for (int y = 0; y < ROW; y++){
+            if(guessYCoordinate == alphabet){
+                yCoordinate = y;
+                break;
+            }
+            alphabet += 1;
+        }
+
+        //This if statement executes if the user guesses the correct location and ends the program
         if (xCoordinate == randXCoordinate && yCoordinate == randYCoordinate) {
             numGuesses++;
             hit = true;
@@ -67,11 +82,15 @@ int main() {
                     cout << battlefield.at(i).at(j) << " ";
                 }
                 cout << endl;
-                cout << "~~~~~~";
+                for (int z = 0; z <= COL - 1; z++){
+                    cout << "~ ";
+                }
                 cout << endl;
             }
             cout << "Hit!!! You sunk my battleship in " << numGuesses << " guesses!" << endl;
         }
+
+        //This else statement executes if the user guesses the wrong location and replaces that location with an O
         else {
             battlefield.at(yCoordinate).at(xCoordinate) = "O";
             numGuesses++;
