@@ -6,8 +6,8 @@ using namespace std;
 
 int main() {
     //Specify number of rows and columns
-    const int COL = 10;
-    const int ROW = 10;
+    const int COL = 3;
+    const int ROW = 3;
 
     bool hit = false;
 
@@ -52,6 +52,7 @@ int main() {
         cin >> guessXCoordinate;
 
         //Converts the character input of the user to the corresponding column with A -> Column 0, B -> Column 1, C -> Column 2 ...
+        alphabet = 'A';
         for (int x = 0; x < COL; x++){
             if(guessXCoordinate == alphabet){
                 xCoordinate = x;
