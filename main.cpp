@@ -14,11 +14,15 @@ int main() {
     vector<vector<string>> battlefield(ROW, vec);
 
     srand(time(0));
-    int randXCoordinate = rand() % 3 + 1;
-    int randYCoordinate = rand() % 3 + 1;
+    int randXCoordinate = rand() % 3;
+    int randYCoordinate = rand() % 3;
+    cout << randXCoordinate << " " << randYCoordinate << endl;
 
-    int guessXCoordinate;
-    int guessYCoordinate;
+    char guessXCoordinate;
+    char guessYCoordinate;
+
+    int xCoordinate = 0;
+    int yCoordinate = 0;
 
     int numGuesses = 0;
 
@@ -32,16 +36,33 @@ int main() {
             cout << "~~~~~~";
             cout << endl;
         }
-        cout << "Enter guess for column of ship: " << endl;
+        cout << "Enter guess for column of ship: (A for column 1, B for column 2, C for column 3)" << endl;
         cin >> guessXCoordinate;
-        guessXCoordinate -= 1;
-        cout << "Enter guess for row of ship: " << endl;
+        if (guessXCoordinate == 'A'){
+            xCoordinate = 0;
+        }
+        else if (guessXCoordinate == 'B'){
+            xCoordinate = 1;
+        }
+        else if (guessXCoordinate == 'C'){
+            xCoordinate = 2;
+        }
+        cout << "Enter guess for row of ship: (A for row 1, B for row 2, C for row 3) " << endl;
         cin >> guessYCoordinate;
-        guessYCoordinate -= 1;
+        if (guessYCoordinate == 'A'){
+            yCoordinate = 0;
+        }
+        else if (guessYCoordinate == 'B'){
+            yCoordinate = 1;
+        }
+        else if (guessYCoordinate == 'C'){
+            yCoordinate = 2;
+        }
 
-        if (guessXCoordinate == randXCoordinate && guessYCoordinate == randYCoordinate) {
+        if (xCoordinate == randXCoordinate && yCoordinate == randYCoordinate) {
+            numGuesses++;
             hit = true;
-            battlefield.at(guessYCoordinate).at(guessXCoordinate) = "X";
+            battlefield.at(yCoordinate).at(xCoordinate) = "X";
             for (int i = 0; i < battlefield.size(); i++) {
                 for (int j = 0; j < battlefield.at(i).size(); j++) {
                     cout << battlefield.at(i).at(j) << " ";
@@ -50,10 +71,10 @@ int main() {
                 cout << "~~~~~~";
                 cout << endl;
             }
-            cout << "Hit!!! You sunk my battleship in " << numGuesses << endl;
+            cout << "Hit!!! You sunk my battleship in " << numGuesses << " guesses" << endl;
         }
         else {
-            battlefield.at(guessYCoordinate).at(guessXCoordinate) = "O";
+            battlefield.at(yCoordinate).at(xCoordinate) = "O";
             numGuesses++;
             cout << "Miss!!!" << endl;
         }
