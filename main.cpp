@@ -48,9 +48,10 @@ int main() {
         }
 
         //Asks user to guess column that ship is located in
-        cout << "Enter guess for column of ship: (A for column 1, B for column 2, C for column 3)" << endl;
+        cout << "Enter guess for column of ship: (A for column 1, B for column 2, C for column 3 and so on...)" << endl;
         cin >> guessXCoordinate;
 
+        //Converts the character input of the user to the corresponding column with A -> Column 0, B -> Column 1, C -> Column 2 ...
         for (int x = 0; x < COL; x++){
             if(guessXCoordinate == alphabet){
                 xCoordinate = x;
@@ -60,9 +61,10 @@ int main() {
         }
 
         //Asks user to guess row that ship is located in
-        cout << "Enter guess for row of ship: (A for row 1, B for row 2, C for row 3) " << endl;
+        cout << "Enter guess for row of ship: (A for row 1, B for row 2, C for row 3 and so on...) " << endl;
         cin >> guessYCoordinate;
 
+        // Resets the alphabet and converts the character input of the user to the corresponding row with A -> Row 0, B -> Row 1, C -> Row 2 ...
         alphabet = 'A';
         for (int y = 0; y < ROW; y++){
             if(guessYCoordinate == alphabet){
