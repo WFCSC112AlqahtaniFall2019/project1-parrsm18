@@ -21,12 +21,12 @@ int main() {
     int randYCoordinate = rand() % ROW;
 
     //Following line is used for debugging purposes
-    cout << randXCoordinate + 1 << " " << randYCoordinate  + 1 << endl;
+    //cout << randXCoordinate + 1 << " " << randYCoordinate  + 1 << endl;
 
     //Initialize all other variables to be used
     char guessXCoordinate = 'A';
     char guessYCoordinate = 'A';
-    char alphabet = 'A';
+    char alphabet;
 
     int xCoordinate = 0;
     int yCoordinate = 0;
@@ -100,4 +100,5 @@ int main() {
             cout << "Miss!!!" << endl;
         }
     }
+    return 0;
 }
