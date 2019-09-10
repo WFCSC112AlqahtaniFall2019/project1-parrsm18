@@ -10,6 +10,8 @@ int main() {
     const int ROW = 3;
 
     bool hit = false;
+    bool validColumn = false;
+    bool validRow = false;
 
     //Create two-dimensional array
     vector<string> vec(COL, "!");
@@ -48,8 +50,20 @@ int main() {
         }
 
         //Asks user to guess column that ship is located in
-        cout << "Enter guess for column of ship: (A for column 1, B for column 2, C for column 3 and so on...)" << endl;
-        cin >> guessXCoordinate;
+        validColumn = false;
+        while (!validColumn) {
+            cout << "Enter guess for column of ship: (A for column 1, B for column 2, C for column 3 and so on...)" << endl;
+            cin >> guessXCoordinate;
+            if (guessXCoordinate >= 65 + COL || guessXCoordinate < 65) { // Checks to see if column entered is in the valid range
+                cout << "Please enter a valid column" << endl;
+            }
+            else {
+                validColumn = true;
+            }
+        }
+
+        //between 65(A) and 90 (z)
+
 
         //Converts the character input of the user to the corresponding column with A -> Column 0, B -> Column 1, C -> Column 2 ...
         alphabet = 'A';
@@ -62,8 +76,17 @@ int main() {
         }
 
         //Asks user to guess row that ship is located in
-        cout << "Enter guess for row of ship: (A for row 1, B for row 2, C for row 3 and so on...) " << endl;
-        cin >> guessYCoordinate;
+        validRow = false;
+        while (!validRow) {
+            cout << "Enter guess for row of ship: (A for row 1, B for row 2, C for row 3 and so on...)" << endl;
+            cin >> guessYCoordinate;
+            if (guessYCoordinate >= 65 + ROW || guessYCoordinate < 65) { // Checks to see if row entered is in the valid range
+                cout << "Please enter a valid row" << endl;
+            }
+            else {
+                validRow = true;
+            }
+        }
 
         // Resets the alphabet and converts the character input of the user to the corresponding row with A -> Row 0, B -> Row 1, C -> Row 2 ...
         alphabet = 'A';
